@@ -4,7 +4,7 @@
 - [Azure Portal](https://portal.azure.com)
 - [Teams Meeting]()
 
-#Demos Instructions:
+# Demos Instructions:
 1. [Create a Resource Group](##create-a-resource-group)
 2. [Create a Virtual Machine](##create-a-vm)
 3. [Deploy IIS](##deploy-iis)
@@ -14,7 +14,7 @@
 
 
 
-##Create a Resource Group
+## Create a Resource Group
 A resource group is a logical container that will be throughout the rest of this workshop.
 
 1. Login to the [Azure Portal](https://portal.azure.com) with your company email address.
@@ -31,7 +31,7 @@ A resource group is a logical container that will be throughout the rest of this
 8.  On the left menu bar click the `Resource Groups` button and search for your Resource Group ![search](./images/5-click-in-portal.png)
 
 
-##Create a VM
+## Create a VM
 A Virtual Machine is the core resource of Infrastructure as a Service (IaaS).  Let's create a Windows Server VM using the Azure Portal.  You could also do this using Cloud Shell [code here](##vm-create-through-code) or ARM Template.
 1. Click on the `+ New Resource` ![](./images/2-0.png)
 2. Search for `Windows Server` 
@@ -52,7 +52,7 @@ Inbound ports: HTTP, HTTPS, RDP
 12. Login with the admin username and password you created before
 
 
-##Deploy IIS
+## Deploy IIS
 1. Open cloud shell
 2. Type in the following (Please remember to change VMName and ResourceGroupName):
 ```powershell
@@ -69,7 +69,7 @@ Set-AzVMExtension `
 3. Find the VM's public IP
 4. Open a new tab and go to `http://<publicip>`
 
-##Block HTTP
+## Block HTTP
 Firewall rules in Azure are easy to create and manage.  Let's go back and block port 80 on the VM we created earlier.
 1. Click on Resource Groups in the left, and click on your Resource Group, then find the network security group for your VM `vm-<yourname>-nsg`
 ![](./images/3-1.png)
@@ -83,8 +83,8 @@ Firewall rules in Azure are easy to create and manage.  Let's go back and block 
 
 
 
-#Appendix:
-##VM Create Through Code
+# Appendix:
+## VM Create Through Code
 1. Open CloudShell
 2. First grab an admin/password:
 `$cred = Get-Credential`
