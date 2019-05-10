@@ -80,7 +80,26 @@ Firewall rules in Azure are easy to create and manage.  Let's go back and block 
 ![](./images/3-3.png)
 5. Now try to hit your VM's website again and it will be inaccessible.
 
-
+## Deploy Web App
+An Azure Web App is serverless way to quickly deploy applications to the web.  Let's deploy a simple, static site.
+1. Click `+ New Resource` and search for Web App and click create
+![](./images/4-1.png)
+2. Select the following options
+Instance Name: `WA-<yourname>`
+Type: ASP Net 2.0
+![](./images/4-2.png)
+3. Click on Resource Groups in the left, click your Resource Group and click on WA-<yourname>
+![](./image/4-3.png)
+4. Click on Deployment Center to setup content for your site 
+![](./image/4-4.png)
+5. Select External Git as your repository and click continue
+![](./images/4-5.png)
+6. Click continue (select kude console)
+7. For the repository enter `https://github.com/SameerDoshi/CloudWorkshop.git` and branch `master`
+![](./images/4-6.png)
+8. Click save
+9. Click Overview in the left and find the site's URL
+10. Open the URL in a new window ![](./images/4-7.png)
 
 
 # Appendix:
