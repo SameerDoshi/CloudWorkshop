@@ -5,12 +5,12 @@
 - [Teams Meeting]()
 
 # Demos Instructions:
-1. [Create a Resource Group](##create-a-resource-group)
-2. [Create a Virtual Machine](##create-a-vm)
-3. [Deploy IIS](##deploy-iis)
-4. [Block HTTP](##block-http)
-5. Create an Azure Web Site
-6. Create a budget
+1. [Create a Resource Group](#create-a-resource-group)
+2. [Create a Virtual Machine](#create-a-vm)
+3. [Deploy IIS](#deploy-iis)
+4. [Block HTTP](#block-http)
+5. [Create an Azure Web App](#deploy-web-app)
+
 
 
 
@@ -32,7 +32,7 @@ A resource group is a logical container that will be throughout the rest of this
 
 
 ## Create a VM
-A Virtual Machine is the core resource of Infrastructure as a Service (IaaS).  Let's create a Windows Server VM using the Azure Portal.  You could also do this using Cloud Shell [code here](##vm-create-through-code) or ARM Template.
+A Virtual Machine is the core resource of Infrastructure as a Service (IaaS).  Let's create a Windows Server VM using the Azure Portal.  You could also do this using Cloud Shell [code here](#vm-create-through-code) or ARM Template.
 1. Click on the `+ New Resource` ![](./images/2-0.png)
 2. Search for `Windows Server` 
 3. Select `Server 2019 Datacenter` and click Create ![](./images/2-1.png)
