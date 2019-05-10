@@ -4,16 +4,19 @@
 - [Azure Portal](https://portal.azure.com)
 - [Teams Meeting]()
 
-## Demos Instructions:
+#Demos Instructions:
 1. [Create a Resource Group](##create-a-resource-group)
 2. [Create a Virtual Machine](##create-a-vm)
-3. Configure IIS
-4. Configure a Network Security Group
+3. [Deploy IIS](##deploy-iis)
+4. [Block HTTP](##block-http)
 5. Create an Azure Web Site
 6. Create a budget
 
 
-## Create a Resource Group
+
+##Create a Resource Group
+A resource group is a logical container that will be throughout the rest of this workshop.
+
 1. Login to the [Azure Portal](https://portal.azure.com) with your company email address.
 2. Click on "Cloud Shell" Icon at the top right of the Azure portal ![Open Cloud Shell](./images/1-open-cloud-shell.png)
 3. Select PowerShell as your default language. ![select PowerShell](./images/2-set-powershell.png)
@@ -28,7 +31,8 @@
 8.  On the left menu bar click the `Resource Groups` button and search for your Resource Group ![search](./images/5-click-in-portal.png)
 
 
-## Create a VM
+##Create a VM
+A Virtual Machine is the core resource of Infrastructure as a Service (IaaS).  Let's create a Windows Server VM using the Azure Portal.  You could also do this using Cloud Shell [code here](##vm-create-through-code) or ARM Template.
 1. Click on the `+ New Resource` ![](./images/2-0.png)
 2. Search for `Windows Server` 
 3. Select `Server 2019 Datacenter` and click Create ![](./images/2-1.png)
@@ -46,3 +50,54 @@ Inbound ports: HTTP, HTTPS, RDP
 10. Enter your VM's public IP into the "Computer" text box of the Remote Desktop Connection box ![](./images/2-5.png)
 11. On the username/password screen choose More Options and select "Other account" ![](./images/2-7.png)
 12. Login with the admin username and password you created before
+
+
+##Deploy IIS
+1. Open cloud shell
+2. Type in the following (Please remember to change VMName and ResourceGroupName):
+```powershell
+Set-AzVMExtension `
+    -ResourceGroupName "RG-sdoshi" `
+    -VMName "VM-sdoshi" `
+    -ExtensionName "IIS" `
+    -Location "CentralUS" `
+    -Publisher Microsoft.Compute `
+    -ExtensionType CustomScriptExtension `
+    -TypeHandlerVersion 1.8 `
+    -SettingString '{"commandToExecute":"powershell Add-WindowsFeature Web-Server; powershell Add-Content -Path \"C:\\inetpub\\wwwroot\\Default.htm\" -Value $($env:computername)"}'
+```
+3. Find the VM's public IP
+4. Open a new tab and go to `http://<publicip>`
+
+##Block HTTP
+Firewall rules in Azure are easy to create and manage.  Let's go back and block port 80 on the VM we created earlier.
+1. Click on Resource Groups in the left, and click on your Resource Group, then find the network security group for your VM `vm-<yourname>-nsg`
+![](./images/3-1.png)
+2. Click on Inbound Security Rules
+![](./images/3-2.png)
+3. Click on HTTP 80 to view the rules
+4. Flip the rule from `ALLOW` to `DENY` and click save
+![](./images/3-3.png)
+5. Now try to hit your VM's website again and it will be inaccessible.
+
+
+
+
+#Appendix:
+##VM Create Through Code
+1. Open CloudShell
+2. First grab an admin/password:
+`$cred = Get-Credential`
+3. Create a new VM
+```powershell
+New-AzVm `
+    -ResourceGroupName "RG-sdoshi" `
+    -Name "VM-sdoshi" `
+    -Location "Central US" `
+    -VirtualNetworkName "VM-sdoshi-vnet" `
+    -SubnetName "mySubnet" `
+    -SecurityGroupName "VM-sdoshi-nsg" `
+    -PublicIpAddressName "VM-sdoshi-pip" `
+    -OpenPorts 80,443,3389 `
+    -Credential $cred
+```
