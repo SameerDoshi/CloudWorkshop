@@ -22,7 +22,7 @@ A resource group is a logical container that will be throughout the rest of this
 3. Select PowerShell as your default language. ![select PowerShell](./images/2-set-powershell.png)
 4. Select a subscription to store cloud shell data (less than 5 MB of data will be stored). ![set subscription](./images/3-set-subscription.png)
 5. After a few seconds Cloud Shell will initialize. 
-6. Click into Cloud Shell and enter the command: `az group create --name RG-<yourname> --location central-us` and hit enter
+6. Click into Cloud Shell and enter the command: `az group create --name RG-<yourname> --location centralus` and hit enter
 
 ![command](./images/4-create-rg.png)
 
