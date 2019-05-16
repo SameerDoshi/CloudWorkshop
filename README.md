@@ -88,10 +88,10 @@ An Azure Web App is serverless way to quickly deploy applications to the web.  L
 Instance Name: `WA-<yourname>`
 Type: ASP Net 2.0
 ![](./images/4-2.png)
-3. Click on Resource Groups in the left, click your Resource Group and click on WA-<yourname>
-![](./image/4-3.png)
+3. Click on Resource Groups in the left, click your Resource Group and click on `WA-<yourname>`
+![](./images/4-3.png)
 4. Click on Deployment Center to setup content for your site 
-![](./image/4-4.png)
+![](./images/4-4.png)
 5. Select External Git as your repository and click continue
 ![](./images/4-5.png)
 6. Click continue (select kude console)
